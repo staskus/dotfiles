@@ -1,57 +1,31 @@
-#!/bin/zsh
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Link files
-files="bin .vim .vimrc .custom .gitattributes .gitconfig .gitignore .hgignore .hgrc .inputrc .pythonrc"
-echo "\nLinking files..."
-for file in $files; do
-    echo "  Linking $file to ~"
-    rm -rf ~/$file
-    ln -s $DIR/$file ~/$file
-done
+# ohmyz.sh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# zshrc
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
 
-chsh -s /bin/zsh
-
-rm -rf ~/.zshrc ~/.zpreztorc
-ln -s $DIR/zprezto/zshrc ~/.zshrc
-ln -s $DIR/zprezto/zpreztorc ~/.zpreztorc
+# nano ~/.zshrc find plugins=(git)
+## Append zsh-autosuggestions & zsh-syntax-highlighting to plugins() like this
+## plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 # brew
 if test ! $(which brew); then
   echo "Installing homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
-mkdir -p ~/Library/LaunchAgents
-
 # Casks
-brew cask install java
-brew cask install dropbox
 brew cask install 1password
-brew cask install genymotion
 brew cask install iterm2
-brew cask install rocket-chat
 brew cask install sourcetree
-brew cask install google-chrome
-brew cask install diffmerge
-brew cask install the-unarchiver
-brew cask install vlc
-brew cask install virtualbox 
 brew cask install spotify
-brew cask install sketch
-brew cask install android-studio appcode
-brew cask install atom
-brew cask install colorsnapper
-brew cask install deco
-brew cask install docker
-brew cask install skype
+brew cask install sublime-text
+brew cask install thunderbird
+brew cask install google-chrome
+brew cask install dropbox
+brew cask install spectacle
+
 
 brew install coreutils findutils
 
@@ -59,21 +33,10 @@ brew tap homebrew/dupes
 brew install homebrew/dupes/grep
 
 binaries=(
-    carthage
-    macvim
-    moreutils
     grep
-    imagemagick
-    jpeg
-    elasticsearch
     node
-    readline
-    wget
-    autoconf
     cmake
     openssl
-    nginx
-    carthage
 )
 
 brew install ${binaries[@]}
@@ -83,4 +46,4 @@ brew cleanup
 npm install -g diff-so-fancy
 
 # cocoapods
-gem install cocoapods
+sudo gem install cocoapods
