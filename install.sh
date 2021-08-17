@@ -16,15 +16,15 @@ if test ! $(which brew); then
 fi
 
 # Casks
-brew cask install 1password
-brew cask install iterm2
-brew cask install sourcetree
-brew cask install spotify
-brew cask install sublime-text
-brew cask install thunderbird
-brew cask install google-chrome
-brew cask install dropbox
-brew cask install spectacle
+brew install --cask 1password
+brew install --cask iterm2
+brew install --cask sourcetree
+brew install --cask spotify
+brew install --cask sublime-text
+brew install --cask thunderbird
+brew install --cask google-chrome
+brew install --cask dropbox
+brew install --cask spectacle
 
 
 brew install coreutils findutils
