@@ -12,19 +12,26 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 # brew
 if test ! $(which brew); then
   echo "Installing homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
+
+brew install node
 
 # Casks
 brew install --cask 1password
 brew install --cask iterm2
-brew install --cask sourcetree
 brew install --cask spotify
 brew install --cask sublime-text
 brew install --cask thunderbird
-brew install --cask google-chrome
 brew install --cask dropbox
 brew install --cask spectacle
+brew install --cask visual-studio-code
+brew install --cask google-drive
+brew install --cask netnewswire
+brew install --cask todoist
+brew install --cask zoom
+brew install --cask freedom
+brew install swiftlint
 
 
 brew install coreutils findutils
